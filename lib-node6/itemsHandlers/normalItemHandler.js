@@ -1,18 +1,18 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = handleNormalItem;
+
+var _helper = require('./helper');
+
 function handleNormalItem(item) {
-    if (item.quality > 0) {
-        item.quality--;
-    }
+    (0, _helper.decreaseQuality)(item);
     item.sellIn--;
+
     if (item.sellIn < 0) {
-        if (item.quality > 0) {
-            item.quality--;
-        }
+        (0, _helper.decreaseQuality)(item);
     }
 }
 //# sourceMappingURL=normalItemHandler.js.map

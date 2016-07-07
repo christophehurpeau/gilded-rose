@@ -1,18 +1,17 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = handleAgedBrieItem;
+
+var _helper = require('./helper');
+
 function handleAgedBrieItem(item) {
-    if (item.quality < 50) {
-        item.quality = item.quality + 1;
-    }
+    (0, _helper.increaseQuality)(item);
     item.sellIn--;
     if (item.sellIn < 0) {
-        if (item.quality < 50) {
-            item.quality++;
-        }
+        (0, _helper.increaseQuality)(item);
     }
 }
 //# sourceMappingURL=agedBrieItemHandler.js.map

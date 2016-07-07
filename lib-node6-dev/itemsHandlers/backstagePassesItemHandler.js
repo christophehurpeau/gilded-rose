@@ -1,26 +1,25 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = handleBackstagePassesItem;
+
+var _helper = require('./helper');
+
 function handleBackstagePassesItem(item) {
     if (item.quality < 50) {
         item.quality++;
         if (item.sellIn < 11) {
-            if (item.quality < 50) {
-                item.quality++;
-            }
+            (0, _helper.increaseQuality)(item);
         }
         if (item.sellIn < 6) {
-            if (item.quality < 50) {
-                item.quality++;
-            }
+            (0, _helper.increaseQuality)(item);
         }
     }
     item.sellIn--;
     if (item.sellIn < 0) {
-        item.quality = item.quality - item.quality;
+        item.quality -= item.quality;
     }
 }
 //# sourceMappingURL=backstagePassesItemHandler.js.map

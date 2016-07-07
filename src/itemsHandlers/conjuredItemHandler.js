@@ -1,5 +1,7 @@
 import { decreaseQuality } from './helper';
-export default function handleNormalItem(item) {
+
+export default function handleConjuredItem(item) {
+    decreaseQuality(item);
     decreaseQuality(item);
     item.sellIn--;
 

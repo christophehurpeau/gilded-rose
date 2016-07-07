@@ -14,6 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const AGED_BRIE = 'Aged Brie';
 const SULFURAS = 'Sulfuras, Hand of Ragnaros';
 const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
+const CONJURED = 'Conjured';
 
 function testUpdateQualityItem(name, sellIn, quality) {
     const item = new _libNode.Item(name, sellIn, quality);
@@ -25,7 +26,7 @@ function testUpdateQualityItem(name, sellIn, quality) {
 suite('Normal products', () => {
     test('sellIn lowers', () => {
         const item = testUpdateQualityItem('item test', 3, 3);
-        (0, _assert.strictEqual)(item.sell_in, 2);
+        (0, _assert.strictEqual)(item.sellIn, 2);
     });
 
     test('quality lowers', () => {
@@ -55,6 +56,11 @@ suite('Normal products', () => {
 });
 
 suite('Aged Brie', () => {
+    test('sellIn lowers', () => {
+        const item = testUpdateQualityItem('item test', 3, 3);
+        (0, _assert.strictEqual)(item.sellIn, 2);
+    });
+
     test('Quality should increases', () => {
         const item = testUpdateQualityItem(AGED_BRIE, 3, 10);
         (0, _assert.strictEqual)(item.quality, 11);
@@ -77,9 +83,14 @@ suite('Aged Brie', () => {
 });
 
 suite('Sulfuras', () => {
+    test('sellIn lowers', () => {
+        const item = testUpdateQualityItem('item test', 3, 3);
+        (0, _assert.strictEqual)(item.sellIn, 2);
+    });
+
     test('Quality should not change even when saleIn > 0', () => {
         const item = testUpdateQualityItem(SULFURAS, 1, 1);
-        (0, _assert.strictEqual)(item.sell_in, 1);
+        (0, _assert.strictEqual)(item.sellIn, 1);
         (0, _assert.strictEqual)(item.quality, 1);
     });
 
@@ -90,6 +101,11 @@ suite('Sulfuras', () => {
 });
 
 suite('Backstage passes', () => {
+    test('sellIn lowers', () => {
+        const item = testUpdateQualityItem('item test', 3, 3);
+        (0, _assert.strictEqual)(item.sellIn, 2);
+    });
+
     test('Quality should increases by 1 when there are 11 days or more', () => {
         const item = testUpdateQualityItem(BACKSTAGE_PASSES, 12, 5);
         (0, _assert.strictEqual)(item.quality, 6);
@@ -117,6 +133,39 @@ suite('Backstage passes', () => {
 
     test('Quality drops to 0 after the concert', () => {
         const item = testUpdateQualityItem(BACKSTAGE_PASSES, 0, 5);
+        (0, _assert.strictEqual)(item.quality, 0);
+    });
+
+    test('Quality should not change even when quality > 50', () => {
+        const item = testUpdateQualityItem(BACKSTAGE_PASSES, 1, 50);
+        (0, _assert.strictEqual)(item.sellIn, 0);
+        (0, _assert.strictEqual)(item.quality, 50);
+    });
+});
+
+suite('Conjured products', () => {
+    test('sellIn lowers', () => {
+        const item = testUpdateQualityItem(CONJURED, 3, 3);
+        (0, _assert.strictEqual)(item.sellIn, 2);
+    });
+
+    test('quality lowers twice as fast', () => {
+        const item = testUpdateQualityItem(CONJURED, 3, 3);
+        (0, _assert.strictEqual)(item.quality, 1);
+    });
+
+    test('Once the sell by date has passed, Quality still degrades twice as fast', () => {
+        const item = testUpdateQualityItem(CONJURED, -1, 6);
+        (0, _assert.strictEqual)(item.quality, 3);
+    });
+
+    test('Quality cannot decrease if <= 0 when sellIn < 0', () => {
+        const item = testUpdateQualityItem(CONJURED, -1, 0);
+        (0, _assert.strictEqual)(item.quality, 0);
+    });
+
+    test('The Quality of an item is never negative', () => {
+        const item = testUpdateQualityItem(CONJURED, 3, 0);
         (0, _assert.strictEqual)(item.quality, 0);
     });
 });
