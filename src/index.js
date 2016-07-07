@@ -1,12 +1,8 @@
 export default class Items {
     items: Array;
 
-    constructor(items = []) {
+    constructor(items) {
         this.items = items;
-    }
-
-    push(item) {
-        this.items.push(item);
     }
 
     updateQuality() {

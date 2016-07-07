@@ -6,18 +6,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.Item = Item;
 class Items {
 
-    constructor() {
-        let items = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-
+    constructor(items) {
         this.items = items;
 
         if (!Array.isArray(this.items)) {
             throw new TypeError('Value of "this.items" violates contract.\n\nExpected:\nArray\n\nGot:\n' + _inspect(this.items));
         }
-    }
-
-    push(item) {
-        this.items.push(item);
     }
 
     updateQuality() {

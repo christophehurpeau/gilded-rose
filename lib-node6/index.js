@@ -6,14 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.Item = Item;
 class Items {
 
-    constructor() {
-        let items = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-
+    constructor(items) {
         this.items = items;
-    }
-
-    push(item) {
-        this.items.push(item);
     }
 
     updateQuality() {
