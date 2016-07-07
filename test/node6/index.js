@@ -8,7 +8,7 @@ var _libNode2 = _interopRequireDefault(_libNode);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global test */
+/* global test, suite */
 
 
 const AGED_BRIE = 'Aged Brie';

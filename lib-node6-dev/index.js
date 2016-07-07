@@ -9,6 +9,10 @@ var _Item2 = require('./Item');
 
 var _Item3 = _interopRequireDefault(_Item2);
 
+var _itemsHandlers = require('./itemsHandlers');
+
+var _itemsHandlers2 = _interopRequireDefault(_itemsHandlers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Item = _Item3.default;
@@ -32,49 +36,8 @@ class Items {
         for (const item of _items) {
             var _items;
 
-            if (item.name !== 'Aged Brie' && item.name !== 'Backstage passes to a TAFKAL80ETC concert') {
-                if (item.quality > 0) {
-                    if (item.name !== 'Sulfuras, Hand of Ragnaros') {
-                        item.quality = item.quality - 1;
-                    }
-                }
-            } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                    if (item.name === 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (item.sellIn < 11) {
-                            if (item.quality < 50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-                        if (item.sellIn < 6) {
-                            if (item.quality < 50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-            if (item.name !== 'Sulfuras, Hand of Ragnaros') {
-                item.sellIn = item.sellIn - 1;
-            }
-            if (item.sellIn < 0) {
-                if (item.name !== 'Aged Brie') {
-                    if (item.name !== 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (item.quality > 0) {
-                            if (item.name !== 'Sulfuras, Hand of Ragnaros') {
-                                item.quality = item.quality - 1;
-                            }
-                        }
-                    } else {
-                        item.quality = item.quality - item.quality;
-                    }
-                } else {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-            }
+            const handle = (0, _itemsHandlers2.default)(item);
+            handle(item);
         }
     }
 }

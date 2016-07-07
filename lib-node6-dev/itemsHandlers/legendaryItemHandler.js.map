@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/itemsHandlers/legendaryItemHandler.js"],"names":[],"mappings":";;;;;kBAAwB,mB;AAAT,SAAS,mBAAT,CAA6B,IAA7B,EAAmC,CACjD","file":"legendaryItemHandler.js","sourcesContent":["export default function handleLegendaryItem(item) {\n}\n"]}

@@ -1,4 +1,4 @@
-/* global test */
+/* global test, suite */
 import { strictEqual } from 'assert';
 import Items, { Item } from '../../lib-node6';
 
@@ -8,7 +8,7 @@ const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
 function testUpdateQualityItem(name:string, sellIn:number, quality:number) {
     const item = new Item(name, sellIn, quality);
-    const items = new Items([ item ]);
+    const items = new Items([item]);
     items.updateQuality();
     return item;
 }
