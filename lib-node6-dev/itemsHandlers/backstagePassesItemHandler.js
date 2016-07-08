@@ -19,7 +19,7 @@ function handleBackstagePassesItem(item) {
     }
     item.sellIn--;
     if (item.sellIn < 0) {
-        item.quality -= item.quality;
+        item.quality = 0;
     }
 }
 //# sourceMappingURL=backstagePassesItemHandler.js.map
